@@ -66,7 +66,7 @@ def send_message(chat_id, text):
     })
 
 def set_webhook():
-    webhook_url = f'https://<YOUR_RENDER_APP_URL>/app'  # Substitua pelo URL do seu app no Render
+    webhook_url = f'https://https://datamax-bot.onrender.com>/app'  # Substitua pelo URL do seu app no Render
     requests.get(f'https://api.telegram.org/bot{TOKEN}/setWebhook?url={webhook_url}')
 
 if __name__ == '__main__':
