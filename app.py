@@ -1,5 +1,6 @@
 from flask import Flask, request
 import requests
+import os
 
 TOKEN = '7635119625:AAGy7OjYXQuB41nFPuA2TmIUvoMBfegNKTM'
 URL = f'https://api.telegram.org/bot{TOKEN}/sendMessage'
@@ -21,7 +22,15 @@ def webhook():
         if text == '1':
             send_message(chat_id,
                 "📌 *Sobre a DataMax*\n\n"
-                "A *DataMax* foi criada em 2024 por um grupo de alunos da *Uninove* com o objetivo de oferecer soluções tecnológicas inovadoras."
+                "A *DataMax* foi criada em 2024 por um grupo de alunos da *Uninove* com o objetivo de oferecer soluções tecnológicas inovadoras.\n\n"
+                "*Equipe:*\n"
+                "- Matheus Benvegnu (RA: 923202062)\n"
+                "- Davi Lopes Delfino (RA: 924113462)\n"
+                "- Yuri Silva de Souza (RA: 923108998)\n"
+                "- Adriano Figueiredo da Silva (RA: 924202099)\n"
+                "- Hugo Luis da Silva Santos (RA: 925105927)\n"
+                "- Samuel Falcão Roque (RA: 925101757)\n"
+                "- Geovanna Gomes Lopes Folha (RA: 924103737)"
             )
         elif text == '2':
             send_message(chat_id,
@@ -44,7 +53,8 @@ def webhook():
                 "Escolha uma opção para iniciar:\n"
                 "1️⃣ Conheça a DataMax\n"
                 "2️⃣ Conheça nossos serviços\n"
-                "3️⃣ Fazer sugestão/reclamação"
+                "3️⃣ Fazer sugestão/reclamação\n\n"
+                "Deseja marcar uma reunião? (sim/não)"
             )
     return 'ok'
 
@@ -56,4 +66,5 @@ def send_message(chat_id, text):
     })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Executa corretamente no Railway
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
