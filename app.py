@@ -65,13 +65,15 @@ def send_message(chat_id, text):
         'parse_mode': 'Markdown'
     })
 
+# Função para configurar o webhook (use apenas uma vez)
 def set_webhook():
-    webhook_url = f'https://https://datamax-bot.onrender.com>/app'  # Substitua pelo URL do seu app no Render
-    requests.get(f'https://api.telegram.org/bot{TOKEN}/setWebhook?url={webhook_url}')
+    webhook_url = f'https://datamax-bot.onrender.com/{TOKEN}'  # substitua pela URL do seu Render
+    res = requests.get(f'https://api.telegram.org/bot{TOKEN}/setWebhook?url={webhook_url}')
+    print(res.text)
 
 if __name__ == '__main__':
-    # Configura o webhook no Telegram
-    set_webhook()
+    # Não chame automaticamente no Render. Use apenas localmente para registrar o webhook:
+    # set_webhook()
 
-    # Executa corretamente no Render
+    # Inicia o Flask
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
