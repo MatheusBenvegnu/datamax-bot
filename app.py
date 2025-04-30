@@ -65,6 +65,13 @@ def send_message(chat_id, text):
         'parse_mode': 'Markdown'
     })
 
+def set_webhook():
+    webhook_url = f'https://<YOUR_RENDER_APP_URL>/app'  # Substitua pelo URL do seu app no Render
+    requests.get(f'https://api.telegram.org/bot{TOKEN}/setWebhook?url={webhook_url}')
+
 if __name__ == '__main__':
-    # Executa corretamente no Railway
+    # Configura o webhook no Telegram
+    set_webhook()
+
+    # Executa corretamente no Render
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
